@@ -1,0 +1,10 @@
+<button
+  [ngClass]="getClass()"
+  [attr.type]="type"
+  [disabled]="loading || disabled"
+>
+  <ng-container *ngIf="loading"> Loading... </ng-container>
+  <ng-container *ngIf="!loading">
+    <ng-content></ng-content>
+  </ng-container>
+</button>

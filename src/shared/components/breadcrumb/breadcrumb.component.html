@@ -1,0 +1,22 @@
+<div class="text-sm breadcrumbs">
+  <ul>
+    <li
+      class="breadcrumb-item"
+      *ngFor="let breadcrumb of breadcrumbs | async; let last = last"
+    >
+      <a
+        *ngIf="!last"
+        [routerLink]="breadcrumb.path"
+        class="capitalize hover:text-primary"
+      >
+        <ng-content *ngIf="breadcrumb.path !== '/'; else icon">
+          {{ breadcrumb.label }}
+        </ng-content>
+        <ng-template #icon>
+          <i class="bi bi-house font-extrabold"></i>
+        </ng-template>
+      </a>
+      <span *ngIf="last" class="capitalize">{{ breadcrumb.label }}</span>
+    </li>
+  </ul>
+</div>

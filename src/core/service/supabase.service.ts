@@ -36,7 +36,6 @@ export class SupabaseService {
   authChanges(
     callback: (event: AuthChangeEvent, session: Session | null) => void
   ) {
-    console.log('checking status');
     return this.supabase.auth.onAuthStateChange(callback);
   }
 

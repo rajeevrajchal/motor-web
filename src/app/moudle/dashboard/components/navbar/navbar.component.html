@@ -1,8 +1,26 @@
-<div class="bg-blue-300 flex items-center justify-between gap-2 px-4 py-2">
-  <p>MF</p>
-  <div>
-    <button class="btn btn-sm btn-error btn-outline" (click)="logout()">
-      logout
+<nav class="flex items-center justify-between gap-2 px-4 py-2 border-b">
+  <div class="flex items-center gap-2">
+    <button class="md:hidden" (click)="onToggleSidebar()">
+      <i class="bi bi-list text-2xl font-extrabold"></i>
     </button>
+    <p class="text-lg font-bold">MF</p>
   </div>
-</div>
+  <div class="dropdown dropdown-end">
+    <div tabindex="0" role="button" class="avatar pt-1">
+      <div class="w-8 rounded-full">
+        <img
+          src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+        />
+      </div>
+    </div>
+    <ul
+      tabindex="0"
+      class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow flex flex-col gap-2"
+    >
+      <li><a>Item 1</a></li>
+      <li class="btn btn-error btn-sm btn-outline" (click)="logout()">
+        Logout
+      </li>
+    </ul>
+  </div>
+</nav>

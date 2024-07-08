@@ -1,0 +1,100 @@
+<div class="flex flex-col gap-4 mt-4 w-full">
+  <p class="font-bold text-lg">Add Entry</p>
+  <form
+    class="flex flex-col items-start gap-4"
+    [formGroup]="createGasForm"
+    (ngSubmit)="onSubmitGasForm()"
+  >
+    <div class="flex flex-col gap-1 items-start w-full">
+      <label for="createdAt" class="font-semibold">Pick Vehicle</label>
+      <ul class="flex items-center justify-between gap-2">
+        <li
+          class="btn btn-sm"
+          [ngClass]="getButtonClass('Vehicle 1')"
+          (click)="selectVehicle('Vehicle 1')"
+        >
+          Vehicle 1
+        </li>
+        <li
+          class="btn btn-sm"
+          [ngClass]="getButtonClass('Vehicle 2')"
+          (click)="selectVehicle('Vehicle 2')"
+        >
+          Vehicle 2
+        </li>
+        <li
+          class="btn btn-sm"
+          [ngClass]="getButtonClass('Vehicle 3')"
+          (click)="selectVehicle('Vehicle 3')"
+        >
+          Vehicle 3
+        </li>
+      </ul>
+    </div>
+    <div class="flex flex-col gap-1 items-start w-full">
+      <label for="createdAt" class="font-semibold">Entry Date</label>
+      <input class="input input-bordered w-full" type="date" id="createdAt" />
+    </div>
+    <div class="flex flex-col gap-1 items-start w-full">
+      <label for="quantity" class="font-semibold">Quantity</label>
+      <input
+        class="input input-bordered w-full"
+        type="number"
+        id="quantity"
+        min="0"
+        step="0.1"
+        placeholder="Enter quantity"
+        formControlName="quantity"
+        [class.border-red-500]="
+          createGasForm.controls.quantity.invalid &&
+          createGasForm.controls.quantity.touched
+        "
+      />
+    </div>
+    <div class="flex flex-col gap-1 items-start w-full">
+      <label for="unit" class="font-semibold">Unit</label>
+      <select
+        class="select select-bordered w-full"
+        formControlName="unit"
+        [class.border-red-500]="
+          createGasForm.controls.unit.invalid &&
+          createGasForm.controls.unit.touched
+        "
+      >
+        <option disabled selected value="">Pick one</option>
+        <option value="ltr">ltr</option>
+        <option value="watt">watt</option>
+      </select>
+    </div>
+    <div class="flex flex-col gap-1 items-start w-full">
+      <label for="cost" class="font-semibold">Cost</label>
+      <input
+        class="input input-bordered w-full"
+        type="number"
+        id="cost"
+        min="0"
+        step="0.1"
+        formControlName="cost"
+        placeholder="Enter cost"
+        [class.border-red-500]="
+          createGasForm.controls.cost.invalid &&
+          createGasForm.controls.cost.touched
+        "
+      />
+    </div>
+    <div
+      class="flex w-full items-center justify-between md:justify-end md:gap-4"
+    >
+      <button
+        type="button"
+        class="btn btn-error btn-ghost w-1/2 md:w-44"
+        (click)="onSubmitGasFormCancel()"
+      >
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-outline btn-primary w-1/2 md:w-44">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

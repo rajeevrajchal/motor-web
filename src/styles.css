@@ -7,6 +7,7 @@
 @tailwind utilities;
 
 .btn,
-.input {
+.input,
+.select {
   @apply outline-none shadow-none focus:shadow-none active:shadow-none focus:appearance-none active:appearance-none focus:outline-none active:outline-none;
 }

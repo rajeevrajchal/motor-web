@@ -1,3 +1,55 @@
-<p>
-  inventory works!
-</p>
+<div class="flex flex-col items-start gap-4 w-full">
+  <div
+    class="flex justify-between md:flex-row md:items-center flex-col items-start gap-2 w-full"
+  >
+    <p class="font-bold text-lg flex-1">Gas Inventory</p>
+    <div class="flex flex-1 items-center gap-4 justify-end w-full">
+      <select
+        class="select select-bordered select-sm"
+        placeholder="Select Vehicle"
+      >
+        <option disabled selected>Pick one</option>
+      </select>
+      <a class="btn btn-outline btn-sm btn-primary" [routerLink]="['create']">
+        <i class="bi bi-plus font-bold text-xl"></i>
+        Add Gas
+      </a>
+    </div>
+  </div>
+  <ul class="w-full h-full flex flex-col gap-2">
+    <li class="flex items-center justify-between px-4 border rounded-md py-2">
+      <p class="font-bold text-sm">Total</p>
+      <p class="font-bold text-md">{{ getTotalCost() | formatCurrency }}</p>
+    </li>
+    <li
+      *ngFor="let gas of gas_inventory"
+      class="border rounded-md px-4 py-2 flex items-center justify-between"
+    >
+      <div class="flex items-center gap-4">
+        <span>
+          <i class="bi bi-fuel-pump"></i>
+        </span>
+        <div>
+          <p class="font-bold text-sm">
+            {{ gas.createdAt | date : "longDate" }}
+          </p>
+          <p class="text-md">{{ gas.vehicle }}</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="flex flex-col items-start gap-1">
+          <p class="text-md font-bold">2 ltr</p>
+          <p class="text-md font-bold">{{ gas.cost | formatCurrency }}</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <button class="btn btn-sm btn-outline btn-primary">
+            <i class="bi bi-pencil-fill font-bold text-lg"></i>
+          </button>
+          <button class="btn btn-sm btn-outline btn-error">
+            <i class="bi bi-trash font-bold text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,27 @@
+<div class="flex flex-col items-start gap-4 w-full">
+  <div class="flex justify-between w-full">
+    <p class="font-bold text-lg flex-1">Vehicle</p>
+    <a class="btn btn-outline btn-sm btn-primary" [routerLink]="['add']">
+      <i class="bi bi-plus font-bold text-xl"></i>
+      Add Vehicle
+    </a>
+  </div>
+  <ul class="w-full h-full flex flex-col gap-2">
+    <li class="border rounded-md px-4 py-2 flex flex-col items-start gap-2">
+      <div class="flex items-center justify-between gap-4 w-full">
+        <p class="font-bold text-sm">Vehicle 1</p>
+        <div class="flex items-center gap-2">
+          <button class="btn btn-sm btn-outline btn-primary">
+            <i class="bi bi-pencil-fill font-bold text-lg"></i>
+          </button>
+          <button class="btn btn-sm btn-outline btn-error">
+            <i class="bi bi-trash font-bold text-lg"></i>
+          </button>
+        </div>
+      </div>
+      <div>
+        <p>Vehicle ! Detail</p>
+      </div>
+    </li>
+  </ul>
+</div>

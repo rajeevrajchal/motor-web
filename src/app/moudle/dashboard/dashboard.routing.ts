@@ -20,6 +20,11 @@ const routes: Routes = [
           import('./pages/gas/gas.module').then((m) => m.GasModule),
       },
       {
+        path: 'vehicle',
+        loadChildren: () =>
+          import('./pages/vehicle/vehicle.module').then((m) => m.VehicleModule),
+      },
+      {
         path: '**',
         component: NotFoundComponent,
       },

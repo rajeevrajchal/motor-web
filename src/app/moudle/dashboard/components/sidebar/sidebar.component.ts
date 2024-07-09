@@ -25,6 +25,11 @@ export class SidebarComponent {
       label: 'service',
       icon: `<i class="bi bi-sliders font-bold text-xl"></i>`,
     },
+    {
+      href: '/vehicle',
+      label: 'vehicle',
+      icon: `<i class="bi bi-truck-front font-bold text-xl"></i>`,
+    },
   ];
 
   constructor(private readonly router: Router) {

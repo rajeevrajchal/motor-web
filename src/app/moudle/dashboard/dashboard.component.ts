@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { filter } from 'rxjs';
 export class DashboardComponent implements OnInit {
   isSideBarOpen: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private readonly auth: AuthService) {}
 
   ngOnInit() {
     this.router.events
@@ -24,7 +25,6 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleSideBar() {
-    console.log('the button clicked');
     this.isSideBarOpen = !this.isSideBarOpen;
   }
 

@@ -1,3 +1,62 @@
-<p>
-  vehicle-add works!
-</p>
+<div class="flex flex-col gap-4 mt-4 w-full">
+  <p class="font-bold text-lg">Add Your Vehicle</p>
+  <form
+    class="flex flex-col items-start gap-4"
+    [formGroup]="createVehicleForm"
+    (ngSubmit)="onSubmitVehicle()"
+  >
+    <div class="flex flex-col gap-1 items-start w-full">
+      <label for="name" class="font-semibold">Name</label>
+      <input
+        class="input input-bordered w-full"
+        id="name"
+        placeholder="Name of vehicle"
+        formControlName="name"
+        [class.border-red-500]="
+          createVehicleForm.controls.name.invalid &&
+          createVehicleForm.controls.name.touched
+        "
+      />
+    </div>
+    <div class="flex flex-col gap-1 items-start w-full">
+      <label for="identity" class="font-semibold">Identity</label>
+      <input
+        class="input input-bordered w-full"
+        id="identity"
+        placeholder="Vehicle Identity"
+        formControlName="identity"
+        [class.border-red-500]="
+          createVehicleForm.controls.identity.invalid &&
+          createVehicleForm.controls.identity.touched
+        "
+      />
+    </div>
+    <div class="flex flex-col gap-1 items-start w-full">
+      <label for="fuel" class="font-semibold">Fuel</label>
+      <select
+        class="select select-bordered w-full"
+        formControlName="fuel"
+        [class.border-red-500]="
+          createVehicleForm.controls.fuel.invalid &&
+          createVehicleForm.controls.fuel.touched
+        "
+      >
+        <option disabled selected value="">Pick one</option>
+        <option value="petrol">Petrol</option>
+        <option value="diesel">Diesel</option>
+        <option value="ev">EV</option>
+        <option value="hybrid">Hybrid</option>
+      </select>
+    </div>
+    <div
+      class="flex w-full items-center justify-between md:justify-end md:gap-4"
+    >
+      <button type="button" class="btn btn-error btn-ghost w-1/2 md:w-44">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-outline btn-primary w-1/2 md:w-44">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

@@ -6,16 +6,16 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { includes } from 'lodash';
-import { SupabaseService } from '../service/supabase.service';
+import { AuthService } from '../../app/moudle/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private supabase: SupabaseService) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    this.supabase.authChanges((_, session) => {
+    this.auth.authChanges((_, session) => {
       if (session && session.user) {
         return true;
       } else {

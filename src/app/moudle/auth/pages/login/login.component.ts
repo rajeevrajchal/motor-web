@@ -1,26 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SupabaseService } from '../../../../../core/service/supabase.service';
 import { ToastService } from '../../../../../core/service/toast.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   title: string = 'MotorFit';
   isLoading: boolean = false;
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly supabase: SupabaseService,
-    private readonly toastService: ToastService
+    private readonly toastService: ToastService,
+    private readonly auth: AuthService
   ) {}
-
-  session = this.supabase.session;
-
-  ngOnInit() {
-    this.supabase.authChanges((_, session) => (this.session = session));
-  }
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -29,7 +23,7 @@ export class LoginComponent implements OnInit {
   onLoginWithEmail() {
     if (this.loginForm.valid) {
       this.isLoading = true;
-      this.supabase
+      this.auth
         .loginWithEmail(this.loginForm.value.email as string)
         .then(() => {
           this.isLoading = false;

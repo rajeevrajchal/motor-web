@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SupabaseService } from '../../../../../core/service/supabase.service';
 import { ToastService } from '../../../../../core/service/toast.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'auth-social-login',
@@ -9,13 +9,13 @@ import { ToastService } from '../../../../../core/service/toast.service';
 export class SocialLoginComponent {
   isLoading: boolean = false;
   constructor(
-    private readonly supabase: SupabaseService,
+    private readonly auth: AuthService,
     private readonly toast: ToastService
   ) {}
 
   async googleLogin() {
     this.isLoading = true;
-    const { error } = await this.supabase.loginWithGoogle();
+    const { error } = await this.auth.loginWithGoogle();
     this.isLoading = false;
     if (error) {
       this.toast.showError(error?.message || 'Login Failed', 'login');

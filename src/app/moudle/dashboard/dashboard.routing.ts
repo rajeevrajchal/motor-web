@@ -1,5 +1,4 @@
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../../../core/guards/auth.guard';
 import { NotFoundComponent } from '../../../shared/components/not-found/not-found.component';
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -8,7 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
     children: [
       {
         path: '',

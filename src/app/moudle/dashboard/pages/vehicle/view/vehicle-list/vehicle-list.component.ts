@@ -19,7 +19,7 @@ export class VehicleListComponent implements OnInit {
     this.getAllVehicle();
   }
 
-  async getAllVehicle() {
+  getAllVehicle() {
     this.isLoading = true;
     this.vehicleService
       .getVehicle()

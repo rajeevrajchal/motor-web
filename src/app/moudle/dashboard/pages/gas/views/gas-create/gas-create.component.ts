@@ -1,22 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../../../../../core/service/toast.service';
+import { VEHICLE } from '../../../../../../../model/vehicle.model';
+import { VehicleService } from './../../../vehicle/vehicle.service';
 
 @Component({
   selector: 'app-gas-create',
   templateUrl: './gas-create.component.html',
 })
-export class GasCreateComponent {
-  onLoginWithEmail() {
-    throw new Error('Method not implemented.');
-  }
+export class GasCreateComponent implements OnInit {
   isLoading: boolean = false;
   loginForm: any;
+  vehicleLoading: any;
+  vehicles: VEHICLE[] = [];
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly vehicleService: VehicleService,
+    private readonly toast: ToastService
   ) {}
+
+  ngOnInit(): void {
+    this.getVehicle();
+  }
+
+  getVehicle() {
+    this.vehicleLoading = true;
+    this.vehicleService
+      .getVehicle()
+      .then((data) => {
+        this.vehicles = data;
+      })
+      .catch((error) => {
+        this.toast.showError(error, 'Vehicle');
+      });
+    this.vehicleLoading = false;
+  }
 
   createGasForm = this.formBuilder.group({
     createdAt: [''],

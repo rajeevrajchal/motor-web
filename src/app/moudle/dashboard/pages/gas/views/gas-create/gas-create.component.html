@@ -7,29 +7,20 @@
   >
     <div class="flex flex-col gap-1 items-start w-full">
       <label for="createdAt" class="font-semibold">Pick Vehicle</label>
+      @if(vehicleLoading) {
+      <span class="loading loading-spinner loading-lg"></span>
+      }@else {
       <ul class="flex items-center justify-between gap-2">
         <li
+          *ngFor="let vehicle of vehicles"
           class="btn btn-sm"
-          [ngClass]="getButtonClass('Vehicle 1')"
-          (click)="selectVehicle('Vehicle 1')"
+          [ngClass]="getButtonClass(vehicle.id)"
+          (click)="selectVehicle(vehicle.id)"
         >
-          Vehicle 1
-        </li>
-        <li
-          class="btn btn-sm"
-          [ngClass]="getButtonClass('Vehicle 2')"
-          (click)="selectVehicle('Vehicle 2')"
-        >
-          Vehicle 2
-        </li>
-        <li
-          class="btn btn-sm"
-          [ngClass]="getButtonClass('Vehicle 3')"
-          (click)="selectVehicle('Vehicle 3')"
-        >
-          Vehicle 3
+          {{ vehicle.name }} : {{ vehicle.identity }}
         </li>
       </ul>
+      }
     </div>
     <div class="flex flex-col gap-1 items-start w-full">
       <label for="createdAt" class="font-semibold">Entry Date</label>

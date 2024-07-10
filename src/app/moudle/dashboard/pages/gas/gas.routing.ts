@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'create',
     component: GasCreateComponent,
   },
+  {
+    path: ':id/edit',
+    component: GasCreateComponent,
+  },
 ];
 
 @NgModule({

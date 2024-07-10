@@ -16,9 +16,9 @@ export class NavbarComponent {
     this.toggleSidebar.emit();
   }
 
-  async logout() {
+  logout() {
     this.isLoading = true;
-    await this.auth.logout();
+    this.auth.logout();
     this.isLoading = false;
   }
 }

@@ -49,9 +49,7 @@ export class AuthService {
     this.supabase.supabase.auth
       .signOut()
       .then(() => {
-        console.log('I am here');
-        window.location.reload();
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       })
       .catch((error) => {
         console.log('I am in');

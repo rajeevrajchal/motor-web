@@ -1,3 +1,8 @@
+@if(isDataDetailLoading){
+<div class="flex items-center h-full w-full justify-center">
+  <span class="loading loading-spinner loading-lg"></span>
+</div>
+} @else {
 <div class="flex flex-col gap-4 mt-4 w-full">
   <p class="font-bold text-lg">Add Entry</p>
   <form
@@ -23,8 +28,13 @@
       }
     </div>
     <div class="flex flex-col gap-1 items-start w-full">
-      <label for="createdAt" class="font-semibold">Entry Date</label>
-      <input class="input input-bordered w-full" type="date" id="createdAt" />
+      <label for="created_at" class="font-semibold">Entry Date</label>
+      <input
+        class="input input-bordered w-full"
+        type="date"
+        id="created_at"
+        formControlName="created_at"
+      />
     </div>
     <div class="flex flex-col gap-1 items-start w-full">
       <label for="quantity" class="font-semibold">Quantity</label>
@@ -89,3 +99,4 @@
     </div>
   </form>
 </div>
+}

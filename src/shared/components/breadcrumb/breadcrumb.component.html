@@ -1,5 +1,5 @@
-<div class="text-sm breadcrumbs">
-  <ul>
+<div class="text-sm breadcrumbs w-full text-wrap text-ellipsis">
+  <ul class="w-full flex items-start flex-wrap">
     <li
       class="breadcrumb-item"
       *ngFor="let breadcrumb of breadcrumbs | async; let last = last"
@@ -7,7 +7,7 @@
       <a
         *ngIf="!last"
         [routerLink]="breadcrumb.path"
-        class="capitalize hover:text-primary"
+        class="capitalize hover:text-primary max-w-[50px] overflow-hidden whitespace-nowrap text-ellipsis"
       >
         <ng-content *ngIf="breadcrumb.path !== '/'; else icon">
           {{ breadcrumb.label }}

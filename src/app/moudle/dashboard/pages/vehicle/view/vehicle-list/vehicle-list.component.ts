@@ -21,14 +21,15 @@ export class VehicleListComponent implements OnInit {
 
   getAllVehicle() {
     this.isLoading = true;
-    this.vehicleService
-      .getVehicle()
-      .then((data) => {
+    this.vehicleService.getVehicle().subscribe({
+      next: (data) => {
         this.vehicles = data;
-      })
-      .catch((error) => {
-        this.toast.showError(error, 'Vehicle');
-      });
-    this.isLoading = false;
+        this.isLoading = false;
+      },
+      error: (error: any) => {
+        this.toast.showError(error.message, 'Gas-Vehicle');
+        this.isLoading = false;
+      },
+    });
   }
 }

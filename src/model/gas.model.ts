@@ -1,10 +1,13 @@
+import { VEHICLE } from './vehicle.model';
+
 export interface GAS {
-  id: string;
-  createdAt: string;
+  id: any;
+  created_at: string;
   unit: string;
-  vehicleId: string;
-  cost: number;
-  quantity: number;
+  vehicle_id: string;
+  cost: string;
+  quantity: string;
   delete: boolean;
-  updatedAt?: string;
+  updated_at?: string;
+  vehicle: VEHICLE;
 }

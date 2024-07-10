@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'formatCurrency',
 })
 export class FormatCurrencyPipe implements PipeTransform {
-  transform(amount: number): string {
+  transform(amount: number | string): string {
     const userPreferences = {
       currency: 'USD',
       locale: 'en-US',
@@ -15,7 +15,7 @@ export class FormatCurrencyPipe implements PipeTransform {
       return new Intl.NumberFormat(locale, {
         style: 'currency',
         currency,
-      }).format(amount);
+      }).format(Number(amount));
     }
     return '';
   }

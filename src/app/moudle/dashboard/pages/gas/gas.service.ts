@@ -29,8 +29,8 @@ export class GasService {
         .from('gas')
         .select(`*, vehicle:vehicle_id (*)`)
         .eq('vehicle_id', vehicle)
-        .lt('created_at', date_filter_to)
-        .gt('created_at', date_filter_from)
+        .lte('created_at', date_filter_to)
+        .gte('created_at', date_filter_from)
     ).pipe(
       map(({ data, error }) => {
         if (error) throw error;

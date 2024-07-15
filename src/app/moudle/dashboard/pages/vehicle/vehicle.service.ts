@@ -38,7 +38,7 @@ export class VehicleService {
     return from(
       this.supabase.supabase
         .from('vehicle')
-        .insert([{ ...vehicle }])
+        .insert([{ ...vehicle, owner: this.auth.session?.user?.id }])
         .select()
     ).pipe(
       map(({ data, error }) => {

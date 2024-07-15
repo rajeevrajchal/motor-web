@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { VEHICLE_INPUT } from '../../vehicle.service';
+import { ToastService } from '../../../../../../../core/service/toast.service';
+import { VEHICLE_INPUT, VehicleService } from '../../vehicle.service';
 
 @Component({
   selector: 'app-vehicle-add',
@@ -12,7 +13,9 @@ export class VehicleAddComponent {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly vehicleService: VehicleService,
+    private readonly toast: ToastService
   ) {}
 
   createVehicleForm = this.formBuilder.group({
@@ -27,9 +30,17 @@ export class VehicleAddComponent {
       const values = {
         ...this.createVehicleForm.value,
       } as VEHICLE_INPUT;
-      console.log('values', values);
+      this.vehicleService.saveVehicle(values).subscribe({
+        next: () => {
+          this.router.navigate(['/vehicle']);
+          this.toast.showSuccess('Record Updated', 'Vehicle');
+          this.createVehicleForm.reset();
+        },
+        error: (error) => {
+          this.toast.showError(error.message, 'Gas');
+        },
+      });
       this.isLoading = false;
-      // this.router.navigate(['/vehicle']);
     } else {
       this.createVehicleForm.markAllAsTouched();
     }

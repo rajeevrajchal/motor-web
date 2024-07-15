@@ -19,9 +19,9 @@ export class InventoryComponent {
   deletingRecordId: string | null = null;
   gas_inventory: GAS[] = [];
   vehicles: VEHICLE[] = [];
-  date_filter: DATE_FILTER = 'this_week';
-  date_filter_from: string = moment().format(format);
-  date_filter_to: string = moment().endOf('week').format(format);
+  date_filter: DATE_FILTER = 'this_month';
+  date_filter_from: string = moment().startOf('month').format('YYYY-MM-DD');
+  date_filter_to: string = moment().endOf('month').format('YYYY-MM-DD');
   actionButton = {
     label: 'Add Gas',
     link: 'create',
@@ -38,6 +38,7 @@ export class InventoryComponent {
     date_filter_to: string;
   }) {
     this.isLoading = true;
+    console.log('the event', event);
     this.gasService.getAllGasByVehicle(event).subscribe({
       next: (data) => {
         this.gas_inventory = data;
@@ -85,6 +86,8 @@ export class InventoryComponent {
     this.date_filter_from = event.date_filter_from;
     this.date_filter_to = event.date_filter_to;
     this.vehicle = event.vehicle;
+
+    console.log('event on filter', event);
     this.getAllByVehicle({
       vehicle: this.vehicle || '',
       date_filter_from: event.date_filter_from,

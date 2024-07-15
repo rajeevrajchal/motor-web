@@ -14,13 +14,21 @@ const format = 'MMMM, DD YYYY';
   styleUrls: [],
 })
 export class DateSelectorComponent {
-  date_filter: DATE_FILTER = 'this_week';
-  date_filter_from: string = moment().format('YYYY-MM-DD');
-  date_filter_to: string = moment().endOf('week').format('YYYY-MM-DD');
+  date_filter: DATE_FILTER = 'this_month';
+  date_filter_from: string = moment().startOf('month').format('YYYY-MM-DD');
+  date_filter_to: string = moment().endOf('month').format('YYYY-MM-DD');
   date_filter_const = date_filter_values;
 
   @Output()
   dateFilterChange: EventEmitter<any> = new EventEmitter();
+
+  constructor() {
+    console.log('init data', {
+      from: this.date_filter_from,
+      to: this.date_filter_to,
+      df: this.date_filter,
+    });
+  }
 
   private emitDateFilterChange() {
     this.dateFilterChange.emit({

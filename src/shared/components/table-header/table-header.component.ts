@@ -14,9 +14,9 @@ export class TableHeaderComponent implements OnInit {
   vehicle: string | null = null;
   vehicleLoading: boolean = false;
   vehicles: VEHICLE[] = [];
-  date_filter: DATE_FILTER = 'this_week';
-  date_filter_from: string = moment().format('YYYY-MM-DD');
-  date_filter_to: string = moment().endOf('week').format('YYYY-MM-DD');
+  date_filter: DATE_FILTER = 'this_month';
+  date_filter_from: string = moment().startOf('month').format('YYYY-MM-DD');
+  date_filter_to: string = moment().endOf('month').format('YYYY-MM-DD');
 
   @Input() hideActionButton: boolean = false;
   @Input() actionButton: {

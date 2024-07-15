@@ -5,9 +5,8 @@ import { Component, Input } from '@angular/core';
   templateUrl: './loading-view.component.html',
 })
 export class LoadingViewComponent {
-  @Input() loading: boolean = false;
-
-  constructor() {
-    console.log('loading', this.loading);
-  }
+  @Input({
+    required: true,
+  })
+  loading: boolean = false;
 }

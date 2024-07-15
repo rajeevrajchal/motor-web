@@ -1,0 +1,55 @@
+<div class="dropdown dropdown-end w-full">
+  <div
+    tabindex="0"
+    role="button"
+    class="btn m-1 btn-sm btn-outline capitalize font-normal w-full"
+    [title]="getTitleForDateFilter()"
+  >
+    {{ getLabelForDateFilter() }}
+  </div>
+  <div
+    tabindex="0"
+    class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 md:w-[400px] p-2 shadow"
+  >
+    <div
+      class="flex flex-col md:flex-row items-start justify-between gap-4 h-full w-full"
+    >
+      <ul
+        class="flex flex-col gap-1 w-full md:w-52 h-full border rounded-md p-2"
+      >
+        <li
+          *ngFor="let filter of date_filter_const"
+          [ngClass]="getDateFilterClass(filter.value)"
+          (click)="onChangeDatePicker(filter.value)"
+        >
+          {{ filter.label }}
+        </li>
+      </ul>
+      <div class="border rounded-md w-full h-full flex-col gap-2 p-2 flex">
+        <p class="font-bold text-md">Custom</p>
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="from_date">From</label>
+            <input
+              id="from_date"
+              type="date"
+              class="input input-sm input-bordered"
+              [value]="date_filter_from"
+              (change)="onChangeDateFilterValue('from', $event)"
+            />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="from_date">To</label>
+            <input
+              id="from_date"
+              type="date"
+              class="input input-sm input-bordered"
+              [value]="date_filter_to"
+              (change)="onChangeDateFilterValue('to', $event)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,8 +12,8 @@ export type DATE_FILTER =
 export const DATE_FILTER_VALUE: Record<DATE_FILTER, string> = {
   this_week: 'this week',
   last_week: 'last week',
-  last_month: 'last month',
   this_month: 'this month',
+  last_month: 'last month',
   this_year: 'this year',
   last_year: 'last year',
   custom: 'custom',

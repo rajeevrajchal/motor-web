@@ -17,12 +17,20 @@ export type GAS_INPUT = {
 export class GasService {
   constructor(private supabase: SupabaseService) {}
 
-  getAllGasByVehicle(vehicle: string): Observable<GAS[]> {
+  getAllGasByVehicle(payload: {
+    vehicle: string;
+    date_filter_from: string;
+    date_filter_to: string;
+  }): Observable<GAS[]> {
+    const { vehicle, date_filter_from, date_filter_to } = payload;
+
     return from(
       this.supabase.supabase
         .from('gas')
         .select(`*, vehicle:vehicle_id (*)`)
         .eq('vehicle_id', vehicle)
+        .lt('created_at', date_filter_to)
+        .gt('created_at', date_filter_from)
     ).pipe(
       map(({ data, error }) => {
         if (error) throw error;

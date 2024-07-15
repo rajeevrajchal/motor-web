@@ -1,84 +1,23 @@
-<div class="flex flex-col items-start gap-4 min-w-full">
-  <div
-    class="flex justify-between md:flex-row md:items-center flex-col items-start gap-2 w-full"
-  >
-    <p class="font-bold text-lg flex-1">Gas Inventory</p>
-    <div class="flex flex-1 items-center gap-2 justify-end w-full">
-      <select
-        class="select select-bordered select-sm"
-        placeholder="Select Vehicle"
-        (change)="onVehicleChange($event)"
-      >
-        <option disabled>Pick one</option>
-        <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
-          {{ vehicle.name }} - {{ vehicle.identity }}
-        </option>
-      </select>
-      <div class="dropdown dropdown-end">
-        <div
-          tabindex="0"
-          role="button"
-          class="btn m-1 btn-sm btn-outline capitalize font-normal w-fit"
-          [title]="getTitleForDateFilter()"
-        >
-          {{ getLabelForDateFilter() }}
-        </div>
-        <div
-          tabindex="0"
-          class="dropdown-content menu bg-base-100 rounded-box z-[1] w-[400px] p-2 shadow"
-        >
-          <div class="flex items-start justify-between gap-4 h-full w-full">
-            <ul class="flex flex-col gap-1 w-52 h-full border rounded-md p-2">
-              <li
-                *ngFor="let filter of date_filter_const"
-                [ngClass]="getDateFilterClass(filter.value)"
-                (click)="onChangeDatePicker(filter.value)"
-              >
-                {{ filter.label }}
-              </li>
-            </ul>
-            <div
-              class="border rounded-md w-full h-full flex flex-col gap-2 p-2"
-            >
-              <p class="font-bold text-md">Custom Date</p>
-              <div class="flex flex-col gap-4">
-                <div class="flex flex-col gap-1">
-                  <label for="from_date">From</label>
-                  <input
-                    id="from_date"
-                    type="date"
-                    class="input input-sm input-bordered"
-                    [value]="date_filter_from"
-                    (change)="onChangeDateFilterValue('from', $event)"
-                  />
-                </div>
-                <div class="flex flex-col gap-1">
-                  <label for="from_date">To</label>
-                  <input
-                    id="from_date"
-                    type="date"
-                    class="input input-sm input-bordered"
-                    [value]="date_filter_to"
-                    (change)="onChangeDateFilterValue('to', $event)"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="btn btn-outline btn-sm btn-primary" [routerLink]="['create']">
-        <i class="bi bi-plus font-bold text-xl"></i>
-        Add Gas
-      </a>
-    </div>
-  </div>
+<div class="flex flex-col items-start gap-4 w-full">
+  <app-table-header
+    title="Gas Inventory"
+    (filterChange)="onFilterChange($event)"
+    class="w-full"
+    [actionButton]="actionButton"
+  />
   <app-loading-view [loading]="isLoading" class="w-full">
     <ul class="w-full h-full flex flex-col gap-2">
       <li class="flex items-center justify-between px-4 border rounded-md py-2">
         <p class="font-bold text-sm">Total</p>
         <p class="font-bold text-md">{{ getTotalCost() | formatCurrency }}</p>
       </li>
+      @if (!gas_inventory.length) {
+      <div
+        class="flex items-center justify-center rounded-md bg-gray-100 min-h-[20vh]"
+      >
+        <p>No Records</p>
+      </div>
+      }@else {
       <li
         *ngFor="let gas of gas_inventory"
         class="border rounded-md px-4 py-2 flex items-center justify-between"
@@ -131,6 +70,7 @@
           </div>
         </div>
       </li>
+      }
     </ul>
   </app-loading-view>
 </div>

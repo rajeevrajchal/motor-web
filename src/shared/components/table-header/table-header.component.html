@@ -1,0 +1,32 @@
+<div
+  class="flex justify-between md:flex-row md:items-center md:flex-wrapa flex-col items-start gap-2 w-full"
+>
+  <p class="font-bold text-lg flex-1">{{ title }}</p>
+  <div
+    class="flex flex-1 items-center gap-2 justify-start md:justify-end w-full"
+  >
+    <select
+      class="select select-bordered select-sm"
+      placeholder="Select Vehicle"
+      (change)="onVehicleChange($event)"
+    >
+      <option disabled>Pick one</option>
+      <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+        {{ vehicle.name }} - {{ vehicle.identity }}
+      </option>
+    </select>
+    <app-date-selector
+      (dateFilterChange)="dateFilterChange($event)"
+      class="md:w-52 w-full"
+    />
+    @if(!hideActionButton) {
+    <a
+      class="btn btn-outline btn-sm btn-primary ml-1"
+      [routerLink]="[actionButton.link]"
+    >
+      <i class="bi bi-plus font-bold text-xl"></i>
+      {{ actionButton.label }}
+    </a>
+    }
+  </div>
+</div>

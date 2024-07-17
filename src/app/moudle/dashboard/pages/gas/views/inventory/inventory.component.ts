@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import moment from 'moment';
 import { DATE_FILTER } from '../../../../../../../constants/date_filter';
 import { ToastService } from '../../../../../../../core/service/toast.service';
-import { GAS } from '../../../../../../../model/gas.model';
 import { VEHICLE } from '../../../../../../../model/vehicle.model';
 import { GasService } from '../../gas.service';
+import { GAS } from './../../../../../../../model/gas.model';
 
 const format = 'MMMM, DD YYYY';
 
@@ -26,6 +26,7 @@ export class InventoryComponent {
     label: 'Add Gas',
     link: 'create',
   };
+  chart_data: any = {};
 
   constructor(
     private readonly gasService: GasService,
@@ -38,10 +39,38 @@ export class InventoryComponent {
     date_filter_to: string;
   }) {
     this.isLoading = true;
-    console.log('the event', event);
     this.gasService.getAllGasByVehicle(event).subscribe({
       next: (data) => {
-        this.gas_inventory = data;
+        this.gas_inventory = data.sort(
+          (a: GAS, b: GAS) =>
+            new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+        );
+        const chart = data
+          .sort(
+            (a: GAS, b: GAS) =>
+              new Date(a.created_at).getTime() -
+              new Date(b.created_at).getTime()
+          )
+          .reduce(
+            (
+              acc: {
+                label: string[];
+                data: { data: number[]; label: string }[];
+              },
+              current: GAS
+            ) => {
+              acc.label.push(
+                moment(current.created_at).format('MMM, DD, YYYY')
+              );
+              acc.data[0].data.push(current.quantity as any);
+              return acc;
+            },
+            {
+              label: [],
+              data: [{ data: [], label: 'Quantity' }],
+            }
+          );
+        this.chart_data = chart;
         this.isLoading = false;
       },
       error: (error: any) => {
@@ -87,7 +116,6 @@ export class InventoryComponent {
     this.date_filter_to = event.date_filter_to;
     this.vehicle = event.vehicle;
 
-    console.log('event on filter', event);
     this.getAllByVehicle({
       vehicle: this.vehicle || '',
       date_filter_from: event.date_filter_from,

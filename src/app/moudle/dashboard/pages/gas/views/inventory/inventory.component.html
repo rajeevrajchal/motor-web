@@ -5,8 +5,11 @@
     class="w-full"
     [actionButton]="actionButton"
   />
-  <app-loading-view [loading]="isLoading" class="w-full">
-    <ul class="w-full h-full flex flex-col gap-2">
+  <app-loading-view
+    [loading]="isLoading"
+    class="w-full flex flex-col-reverse gap-8"
+  >
+    <ul class="flex-1 h-full flex flex-col gap-2">
       <li class="flex items-center justify-between px-4 border rounded-md py-2">
         <p class="font-bold text-sm">Total</p>
         <p class="font-bold text-md">{{ getTotalCost() | formatCurrency }}</p>
@@ -72,5 +75,11 @@
       </li>
       }
     </ul>
+    <div class="border rounded-md p-2">
+      <p class="font-bold text-md">Summary</p>
+      <div class="h-[32vh] w-full">
+        <app-bar-chart [data]="chart_data" />
+      </div>
+    </div>
   </app-loading-view>
 </div>

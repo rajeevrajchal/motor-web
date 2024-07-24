@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { VehicleAddComponent } from './view/vehicle-add/vehicle-add.component';
+import { VehicleDetailComponent } from './view/vehicle-detail/vehicle-detail.component';
 import { VehicleListComponent } from './view/vehicle-list/vehicle-list.component';
 
 const routes: Routes = [
@@ -10,6 +11,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: VehicleAddComponent,
+  },
+  {
+    path: ':vehicle_id',
+    component: VehicleDetailComponent,
   },
 ];
 

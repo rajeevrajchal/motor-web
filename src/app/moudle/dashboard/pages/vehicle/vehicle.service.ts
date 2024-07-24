@@ -34,6 +34,7 @@ export class VehicleService {
       catchError((error) => throwError(() => error))
     );
   }
+
   saveVehicle(vehicle: VEHICLE_INPUT): Observable<VEHICLE[]> {
     return from(
       this.supabase.supabase

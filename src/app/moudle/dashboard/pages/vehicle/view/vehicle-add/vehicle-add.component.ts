@@ -45,4 +45,9 @@ export class VehicleAddComponent {
       this.createVehicleForm.markAllAsTouched();
     }
   }
+
+  onSubmitVehicleFormCancel() {
+    this.createVehicleForm.reset();
+    this.router.navigateByUrl('/vehicle');
+  }
 }

@@ -5,9 +5,14 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { VehicleRoutes } from './vehicle.routing';
 import { VehicleAddComponent } from './view/vehicle-add/vehicle-add.component';
+import { VehicleDetailComponent } from './view/vehicle-detail/vehicle-detail.component';
 import { VehicleListComponent } from './view/vehicle-list/vehicle-list.component';
 
-const components = [VehicleListComponent, VehicleAddComponent];
+const components = [
+  VehicleListComponent,
+  VehicleAddComponent,
+  VehicleDetailComponent,
+];
 @NgModule({
   imports: [
     CommonModule,

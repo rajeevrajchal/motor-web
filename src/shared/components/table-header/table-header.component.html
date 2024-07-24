@@ -1,12 +1,12 @@
 <div
-  class="flex justify-between md:flex-row md:items-center md:flex-wrapa flex-col items-start gap-2 w-full"
+  class="flex justify-between md:flex-row md:items-center md:flex-wrapa flex-col items-start min-w-full"
 >
   <p class="font-bold text-lg flex-1">{{ title }}</p>
   <div
-    class="flex flex-1 items-center gap-2 justify-start md:justify-end w-full"
+    class="flex flex-1 items-center justify-start md:justify-end w-full gap-x-2 gap-y-1 md:gap-4 flex-wrap"
   >
     <select
-      class="select select-bordered select-sm"
+      class="select select-bordered select-sm -mr-2"
       placeholder="Select Vehicle"
       (change)="onVehicleChange($event)"
     >
@@ -15,13 +15,18 @@
         {{ vehicle.name }} - {{ vehicle.identity }}
       </option>
     </select>
+    @if(vehicle) {
     <app-date-selector
       (dateFilterChange)="dateFilterChange($event)"
-      class="md:w-52 w-full"
+      class="md:w-52 w-fit"
     />
-    @if(!hideActionButton) {
+    <button class="btn btn-sm btn-outline">
+      <i class="bi bi-arrow-bar-down font-bold text-xl"></i>
+      Export
+    </button>
+    } @if(!hideActionButton) {
     <a
-      class="btn btn-outline btn-sm btn-primary ml-1"
+      class="btn btn-outline btn-sm btn-primary md:-ml-1"
       [routerLink]="[actionButton.link]"
     >
       <i class="bi bi-plus font-bold text-xl"></i>

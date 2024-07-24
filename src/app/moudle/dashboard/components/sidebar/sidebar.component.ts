@@ -16,6 +16,11 @@ export class SidebarComponent {
       icon: `<i class="bi bi-house-door font-bold text-xl"></i>`,
     },
     {
+      href: '/vehicle',
+      label: 'vehicle',
+      icon: `<i class="bi bi-truck-front font-bold text-xl"></i>`,
+    },
+    {
       href: '/gas',
       label: 'gas',
       icon: `<i class="bi bi-fuel-pump-fill font-bold text-xl"></i>`,
@@ -24,11 +29,6 @@ export class SidebarComponent {
       href: '/services',
       label: 'service',
       icon: `<i class="bi bi-sliders font-bold text-xl"></i>`,
-    },
-    {
-      href: '/vehicle',
-      label: 'vehicle',
-      icon: `<i class="bi bi-truck-front font-bold text-xl"></i>`,
     },
   ];
 
